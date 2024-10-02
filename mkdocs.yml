@@ -1,0 +1,29 @@
+site_name: GPT-X
+site_url: https://gpt-x.github.io/
+theme:
+  name: material
+  logo: assets/RSM_White.svg
+  palette:
+    primary: custom
+    accent: custom
+  font:
+    text: Roboto
+    code: Roboto Mono
+nav:
+  - Overview: index.md
+  - Architecture: components.md
+  - Installation: installation.md
+  - User Guide: user-guide.md
+  - Azure Innovate Assessment: azure-innovate.md
+extra_css:
+  - stylesheets/extra.css
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  
+

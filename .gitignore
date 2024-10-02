@@ -1,0 +1,14 @@
+# Ignore virtual environment folder
+venv/
+.env
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore mkdocs build folder (site folder)
+site/
+
+# Ignore other system files
+*.log
+.DS_Store
