@@ -15,24 +15,36 @@ GPT-X is a Platform-as-a-Service (PaaS) that automates workflows and enhances bu
 ### 3. Who is GPT-X designed for?
 GPT-X is designed for mid-market to large enterprises looking to automate workflows, improve operational efficiency, and integrate AI into their business processes. It is particularly well-suited for organizations using the Microsoft Azure ecosystem.
 
+### 4. What is a plan and a message in GPT-X?
+A **plan** in GPT-X is a workflow that can be executed by the GPT Orchestrator service in either attended or unattended mode. Each plan can consist of one or more GPT chat prompts. Within each prompt, there is a **message variable** that represents the instructional portion of the prompt. During plan execution, the message variable is dynamically replaced by the actual input provided by the user or client interacting with the GPT Orchestrator.
+
 ---
 
 ## Platform Features
 
-### 4. How does GPT-X integrate with Microsoft Teams?
+### 5. How does GPT-X integrate with Microsoft Teams?
 GPT-X directly integrates with Microsoft Teams, allowing users to interact with workflows within the Teams interface. You can initiate tasks, retrieve data, and collaborate on business processes in real-time through Teams.
 
-### 5. What kind of enterprise applications can GPT-X integrate with?
+### 6. What kind of enterprise applications can GPT-X integrate with?
 GPT-X integrates with a wide variety of enterprise applications, including ERP systems (e.g., SAP, Oracle), CRM platforms (e.g., Salesforce, HubSpot), and Microsoft 365. It connects via secure APIs, VPNs, and other enterprise-grade solutions.
 
-### 6. Can GPT-X handle unattended workflows?
+### 7. Can GPT-X handle unattended workflows?
 Yes, GPT-X can run both unattended and attended workflows. Unattended workflows automate back-office operations, while attended workflows guide users through tasks in real-time.
+
+### 8. Who can create and manage messages in GPT-X?
+Any GPT-X user can create, edit, send, and manage messages within their personal catalog. Users with the **Message Publisher** role can add messages to shared catalogs that belong to a specific plan. All users can access messages in shared catalogs for that plan. However, each plan has its own catalog, meaning messages are only available within the plan they are associated with.
+
+### 9. What happens if I improve or edit a message? How can I ensure others see the updated version?
+Users can edit messages within their personal or shared catalogs. If a **Message Publisher** updates a message in a shared catalog, the updated version becomes available to all users within that plan after the catalog is refreshed. Users can also copy a message from the shared catalog, modify it, and save it as a new message in their personal catalog.
+
+### 10. Does GPT-X keep a history of questions or messages?
+Yes, every message sent to the GPT Orchestrator and its corresponding response is stored in Azure Cosmos DB indefinitely, or until it is manually deleted by an Azure Cosmos DB administrator.
 
 ---
 
 ## Installation
 
-### 7. Can I use Terraform to install GPT-X instead of PowerShell and the CLI?
+### 11. Can I use Terraform to install GPT-X instead of PowerShell and the CLI?
 
 Yes, you can use Terraform to install GPT-X, but the recommended approach is to first use our supported installation method in a **development/test sandbox environment**. This initial installation will create and configure all necessary Azure resources automatically. Here’s how the process works:
 
@@ -50,23 +62,21 @@ By following this approach, you ensure that all required resources are identifie
 
 ## Security and Compliance
 
-### 8. How secure is GPT-X?
+### 12. How secure is GPT-X?
 GPT-X is Azure-native, ensuring that all workflows and integrations benefit from Azure's security infrastructure, including data encryption, secure APIs, and VPN connections.
 
-### 9. Does GPT-X comply with industry regulations?
+### 13. Does GPT-X comply with industry regulations?
 Yes, GPT-X can be configured to comply with industry standards and regulations, including HIPAA, GDPR, and others, depending on your business requirements and workflow design.
+
+### 14. What if I don't want everyone to see my message, but I want only a specific team to use it?
+Currently, this feature is not available in the existing version of GPT-X. However, the next version will introduce **role-based access control** for plans, which will allow you to limit access to specific messages and plans for certain teams or users.
 
 ---
 
 ## Support and Troubleshooting
 
-### 10. Who do I contact for support?
+### 15. Who do I contact for support?
 For technical support, reach out to our support team at [support@example.com](mailto:support@example.com), or visit our support portal at [support.example.com](#).
-
----
-
-## Miscellaneous
-
 
 ---
 
