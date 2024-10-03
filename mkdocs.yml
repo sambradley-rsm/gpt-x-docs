@@ -1,5 +1,5 @@
 site_name: GPT-X
-site_url: https://gpt-x.github.io/
+site_url: https://sambradley-rsm.github.io/gpt-x-docs/
 theme:
   name: material
   logo: assets/RSM_White.svg
@@ -14,6 +14,7 @@ nav:
   - Architecture: components.md
   - Installation: installation.md
   - User Guide: user-guide.md
+  - FAQ: faq.md
   - Azure Innovate Assessment: azure-innovate.md
 extra_css:
   - stylesheets/extra.css
