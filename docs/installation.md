@@ -1,30 +1,442 @@
-# Installation
+# GPT-X Platform Installation Guide
 
-Instructions for installing the project.
+**Version: 1.0**  
+_Last Updated: 10/3/2024_
 
-## Prerequisites
-- Dedicated Azure Virtual Machine for the installation
-- Azure OpenAI Service Quota
-- Installer must have the following permissions:
-    - **MS Windows Administrator Role** or membership in the local Administrators group on the PC/VM.  
-      Required for installation via PowerShell, which installs the product binaries and disables Internet Explorer Enhanced Security Configuration (ESC).
-    - **Application Administrator role** in Azure Active Directory (Entra ID).  
-      Allows for creating and managing applications in the Azure tenant.  
-      [Learn More](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
-    - **Contributor, User Access Administrator, or Owner roles** in the Azure Subscription.  
-      Required for managing Azure resources during the installation.  
-    [Learn More](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
+---
 
-## GPT-X Setup Scripts
+## Table of Contents
 
-- **GPT-X-Setup.bat**: Batch file to run the installation.
-- **iHealthSetup.ps1**: PowerShell script for the installation process.
-- **Logger.ps1**: PowerShell script for logging installation activities.
+1. [Introduction](#1-introduction)
+2. [System Requirements](#2-system-requirements)
+3. [Pre-Installation Checklist](#3-pre-installation-checklist)
+4. [Security Considerations](#4-security-considerations)
+5. [Installation Steps](#5-installation-steps)
+    - [5.1 Checking/Installing Prerequisites](#51-checkinginstalling-prerequisites)
+    - [5.2 Run the Installer](#52-run-the-installer)
+    - [5.3 Key Vault Selection/Creation](#53-key-vault-selectioncreation)
+    - [5.4 Storage Account Selection/Creation](#54-storage-account-selectioncreation)
+    - [5.5 Cosmos DB Selection/Creation](#55-cosmos-db-selectioncreation)
+    - [5.6 Form Recognition Cognitive Service](#56-form-recognition-cognitive-service)
+    - [5.7 Speech Service Selection/Creation](#57-speech-service-selectioncreation)
+    - [5.8 OpenAI Service Pool Creation](#58-openai-service-pool-creation)
+    - [5.9 Application and Function Deployment](#59-application-and-function-deployment)
+    - [5.10 Microsoft Teams App Deployment](#510-microsoft-teams-app-deployment)
+6. [Post-Installation Steps](#6-post-installation-steps)
+7. [Maintenance and Monitoring](#7-maintenance-and-monitoring)
+8. [Terraform Installation Method](#8-terraform-installation-method)
+9. [Uninstallation and Rollback Procedures](#9-uninstallation-and-rollback-procedures)
+10. [Troubleshooting](#10-troubleshooting)
+11. [Support Information](#11-support-information)
+12. [Appendix](#12-appendix)
+    - [A. Glossary of Terms](#a-glossary-of-terms)
+    - [B. Resource Naming Conventions](#b-resource-naming-conventions)
+    - [C. Version History](#c-version-history)
 
-## Teams Integration
+---
 
-- **Microsoft Entra ID App Registration**  
-  Purpose: The GPT-X Teams application will be registered in Azure Active Directory.  
-  [Learn More](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-registrations-overview)
+## 1. Introduction
 
-- **Service Principal Consent**: The installer will need Global Administrator access for Microsoft Teams to approve permissions and give consent on behalf of the organization.
+### Purpose of the Guide
+
+This installation guide provides step-by-step instructions for installing the GPT-X Platform—a cutting-edge, Azure-based Platform-as-a-Service (PaaS) solution. It is intended for IT administrators and DevOps professionals responsible for deploying enterprise applications.
+
+### Product Overview
+
+GPT-X Platform leverages advanced AI capabilities to deliver transformative solutions for your enterprise. It integrates seamlessly with Azure services, offering scalability, security, and high availability.
+
+### Installation Time Estimate
+
+- **Initial Setup**: Approximately 2-3 hours, depending on system configuration and network conditions.
+- **Upgrade/Repair**: Approximately 1-2 hours.
+
+---
+
+## 2. System Requirements
+
+### Hardware Requirements
+
+- **Processor**: Quad-core CPU or higher
+- **Memory**: Minimum 16 GB RAM
+- **Storage**: At least 100 GB of free disk space
+- **Display**: 1024x768 resolution or higher
+
+### Operating System Requirements
+
+- **Supported OS**: Windows 10 Pro/Enterprise (64-bit), Windows Server 2016/2019/2022
+- **PowerShell**: Version 5.1 or higher
+- **Azure CLI**: Version 2.30.0 or higher
+
+---
+
+## 3. Pre-Installation Checklist
+
+- [ ] **Licensing Information**: Confirm that you have the necessary licenses and installation keys.
+- [ ] **Azure Subscription Access**: Verify that you have Owner or Contributor access to the target Azure subscription.
+- [ ] **Azure Quotas**: Ensure sufficient quotas for services like Compute, Storage, Cosmos DB, and OpenAI.
+- [ ] **Permissions**: Confirm that you have the required Azure AD roles (Application Administrator) and local administrative rights.
+- [ ] **Dependencies Installed**:
+    - [ ] PowerShell modules
+    - [ ] Azure CLI and necessary extensions
+- [ ] **Backup Existing Configurations**: If upgrading, back up existing configurations and data.
+- [ ] **Disable IE Enhanced Security Configuration**: Required for PowerShell scripts interacting with MS Graph API.
+
+---
+
+## 4. Security Considerations
+
+### Identity and Access Management
+
+- **Azure AD Roles**: Assign minimal necessary permissions following the principle of least privilege.
+- **Service Principals**: Securely manage service principals and their credentials.
+
+### Encryption and Key Management
+
+- **Key Vault Usage**: All sensitive data like keys and connection strings are stored in Azure Key Vault.
+- **Key Rotation**: Implement regular key rotation policies for keys stored in Key Vault.
+
+### Compliance Requirements
+
+- **Data Residency**: Be aware of data residency requirements relevant to your region (e.g., GDPR).
+- **Auditing**: Enable auditing features in Azure to track access and changes to resources.
+
+---
+
+## 5. Installation Steps
+
+### 5.1 Checking/Installing Prerequisites
+
+The installation script will verify the following:
+
+- **Azure CLI**: Checks for the required version and prompts for installation or upgrade.
+- **Azure CLI Extensions**: Installs necessary extensions.
+- **PowerShell Modules**: Installs or updates required modules.
+
+### 5.2 Run the Installer
+
+Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
+
+### 5.3 Key Vault Selection/Creation
+
+1. **Select or Create Key Vault**:
+    - The script will list existing Key Vaults.
+    - Choose an existing Key Vault or create a new one (recommended for new installations).
+2. **Resource Group Selection**:
+    - Select an existing Resource Group or create a new one.
+3. **Permissions**:
+    - Ensure you have access rights to the Key Vault if upgrading.
+
+**Resources Created**:
+
+- **Key Vault**: `GPT-X-KV-<InstallationId>`
+
+**Key Vault Secrets Created**:
+
+- `ToFInstallationId`
+- `ToFInstallationGuid`
+- `ToFSubscriptionId`
+- `ToFResourceGroup`
+
+*Note: The Installation ID is a 12-digit random number used for resource naming.*
+
+### 5.4 Storage Account Selection/Creation
+
+1. **Storage Account Options**:
+    - Select an existing Storage Account or create a new one.
+2. **Naming**:
+    - New Storage Accounts will be named `gptxstore<InstallationId>`.
+
+**Key Vault Secrets Created/Updated**:
+
+- `StorageAccountConnection`
+
+*Note: Function Apps cannot reference Storage Accounts in other Azure subscriptions.*
+
+### 5.5 Cosmos DB Selection/Creation
+
+1. **Cosmos DB Options**:
+    - Select an existing Cosmos DB Account or create a new one.
+2. **Naming**:
+    - New Cosmos DB Accounts will be named `gptorchestrator-<InstallationId>`.
+
+**Key Vault Secrets Created/Updated**:
+
+- `CosmosDBAccountName`
+- `CosmosDBKey`
+
+### 5.6 Form Recognition Cognitive Service
+
+1. **Service Options**:
+    - Select an existing Form Recognition service or create a new one.
+2. **Naming**:
+    - New services will be named `OCR4Images-<InstallationId>`.
+
+**Key Vault Secrets Created/Updated**:
+
+- `OCR4ImagesName`
+- `OCR4ImagesKey`
+- `OCR4ImagesURL`
+
+### 5.7 Speech Service Selection/Creation
+
+1. **Service Options**:
+    - Select an existing Speech Service or create a new one.
+2. **Naming**:
+    - New services will be named `GPT-X-Speech-<InstallationId>`.
+
+**Key Vault Secrets Created/Updated**:
+
+- `GPT-X-SpeechName`
+- `GPT-X-SpeechKey`
+- `GPT-X-SpeechURL`
+
+### 5.8 OpenAI Service Pool Creation
+
+1. **Define Pool Size**:
+    - Enter the number of OpenAI services to create (up to 8).
+2. **Select Model**:
+     - Choose the OpenAI model to deploy across the services.
+3. **Service Creation**:
+     - The script will create or reuse services, potentially across multiple subscriptions/locations based on quota availability.
+4. **Naming**:
+     - Services will be named `GPT-X-OpenAI-<InstallationId>`, `GPT-X-OpenAI2-<InstallationId>`, etc.
+
+**Key Vault Secrets Created/Updated**:
+
+- `OpenAIKey`
+- `OpenAIName`
+- `OpenAIURL`
+- `OpenAIModelName`
+- `OpenAIModelDeploymentURL`
+
+### 5.9 Application and Function Deployment
+
+#### PublishGPTPlans Utility
+
+- **Deployment Location**:
+    - `Program Files (x86)\GPT-X-PIE\PublishGPTPlans-<InstallationId>`
+- **Data Deployment**:
+    - Select a root folder when prompted to deploy utility data.
+
+#### GPTOrchestratorSvc Function App
+
+- **Deployment**:
+    - The script deploys the `GPTOrchestratorSvc-<InstallationId>` Function App.
+- **Resources Created**:
+    - Function App
+    - App Service Plan
+    - Application Insights
+
+**Key Vault Secrets Created/Updated**:
+
+- `GPTOrchestratorSvcAccessKey`
+
+#### ChatGPT-X App Service
+
+- **Deployment**:
+    - Deploys `ChatGPT-X-<InstallationId>` Web App with Azure AD registration.
+- **Resources Created**:
+    - Web App
+    - App Service Plan
+    - Application Insights
+    - Azure AD Application
+
+**Key Vault Secrets Created/Updated**:
+
+- `ChatGPT-X-ClientId`
+- `ChatGPT-X-ClientSecret`
+
+### 5.10 Microsoft Teams App Deployment
+
+1. **Connect to Microsoft Teams**:
+    - The script will attempt to connect using your current Azure account.
+    - If unsuccessful, you will be prompted to log in with another account.
+2. **Approve Permissions**:
+    - Grant the necessary permissions for `ChatGPT-X-<InstallationId>` application.
+    - **Admin Consent**: It's recommended to provide admin consent on behalf of your organization.
+3. **Application Naming**:
+    - You will be prompted to enter or modify the Teams application name.
+
+---
+
+## 6. Post-Installation Steps
+
+### Verification
+
+1. **Azure Portal Check**:
+    - Log into the Azure Portal and verify that all resources have been created successfully.
+2. **Service Status**:
+    - Ensure that all services are running and not in a failed state.
+3. **Key Vault Secrets**:
+    - Verify that all necessary secrets have been populated in the Key Vault.
+
+### Initial Configuration
+
+1. **User Setup**:
+    - Add necessary users and assign appropriate roles within the application.
+2. **Azure AD Integration**:
+    - Confirm that the Azure AD application is properly configured for authentication.
+3. **Application Settings**:
+    - Review and adjust application settings as needed in the Azure Portal.
+
+### Testing the Installation
+
+1. **Functionality Test**:
+    - Use provided sample scripts or interfaces to test the functionality of the GPT-X Platform.
+2. **Service Connectivity**:
+    - Test connections to OpenAI services, Cosmos DB, and other integrated services.
+
+### Best Practices for Production Environments
+
+- **Scaling**: Adjust resource capacities to match production workloads.
+- **High Availability**: Implement multi-region deployments if necessary.
+- **Monitoring**: Set up alerts and monitoring dashboards using Application Insights.
+
+---
+
+## 7. Maintenance and Monitoring
+
+### System Monitoring
+
+- **Application Insights**:
+    - Utilize Application Insights for performance monitoring and diagnostics.
+- **Azure Monitor**:
+    - Set up Azure Monitor to track resource utilization and health.
+
+### Resource Scaling
+
+- **Manual Scaling**:
+    - Adjust resource tiers for services like Cosmos DB and App Service Plans through the Azure Portal.
+- **Auto-Scaling**:
+    - Configure auto-scaling rules where applicable to handle variable workloads.
+
+### Updating and Patching
+
+- **Application Updates**:
+    - Follow provided instructions for updating the GPT-X application when new versions are released.
+- **Azure Updates**:
+    - Keep Azure services up to date by applying patches and updates as recommended by Microsoft.
+
+---
+
+## 8. Terraform Installation Method
+
+### Can I use Terraform to install GPT-X instead of PowerShell and the CLI?
+
+Yes, you can use **Terraform** to install GPT-X, but we recommend starting with the supported installation method in a development/test sandbox environment. This will help you understand the necessary Azure resources and configurations before deploying them with Terraform.
+
+### Recommended Workflow
+
+1. **Sandbox Installation**:  
+   Begin by performing the standard installation in a development or test sandbox environment using our **PowerShell and Azure CLI** method. This process automatically sets up and configures all necessary Azure resources.
+   
+2. **Testing and Validation**:  
+   After the sandbox installation is complete, test the system to ensure that all components and applications are functioning as expected. This step also helps you observe the resource configurations that have been applied.
+   
+3. **Terraform Configuration**:  
+   Once the sandbox environment is working, you can replicate the setup using Terraform for other environments like QA or Production. Inspect the resources created in the sandbox and use those configurations as a basis for writing your Terraform scripts.
+   
+    _Example Terraform Resource Block_
+    ```hcl
+    resource "azurerm_resource_group" "gptx" {
+      name     = "GPTX-ResourceGroup"
+      location = "East US"
+    }
+
+    resource "azurerm_storage_account" "gptx_store" {
+      name                     = "gptxstore123456"
+      resource_group_name      = azurerm_resource_group.gptx.name
+      location                 = azurerm_resource_group.gptx.location
+      account_tier             = "Standard"
+      account_replication_type = "LRS"
+    }
+    ```
+
+4. **Resource Management**:
+    During installation, you can choose to select existing Azure resources if applicable. This provides flexibility in managing and deploying resources across multiple environments.
+
+By following this method, you can ensure that all required resources are correctly configured and tested before deploying GPT-X using Terraform in critical environments.
+
+---
+
+## 9. Uninstallation and Rollback Procedures
+
+### Uninstallation Process
+
+1. **Run Uninstall Script**:
+    - Use the provided uninstallation script to remove GPT-X resources.
+2. **Manual Cleanup**:
+    - Verify that all resources have been deleted from the Azure Portal.
+    - Remove any residual files from the local machine.
+
+### Rollback
+
+1. **Backup Restoration**:
+    - Restore configurations and data from backups taken prior to installation.
+2. **Version Rollback**:
+    - If downgrading, follow the installation steps for the previous version using the backup Installation ID and Key Vault.
+
+---
+
+## 10. Troubleshooting
+
+### Common Errors and Fixes
+
+- **Script Execution Disabled**:
+    - **Error**: `iHealthSetup.ps1 cannot be loaded because running scripts is disabled on this system.`
+    - **Solution**: Adjust PowerShell execution policies as described in the Pre-Installation Setup.
+
+- **Insufficient Permissions**:
+    - **Solution**: Ensure that you have the required Azure and local administrative permissions.
+
+- **Quota Limits Reached**:
+    - **Solution**: Check Azure subscription quotas and request increases if necessary.
+
+### Log File Location
+
+- **Installation Logs**:
+    - Located in `%LOCALAPPDATA%\GPT-X-Logs\`
+- **Azure Activity Logs**:
+    - Accessible via the Azure Portal under Monitor > Activity Log.
+
+---
+
+## 11. Support Information
+
+### Contact Support
+
+- **Email**: ...
+- **Phone**: ...
+- **Support Portal**: ...
+
+---
+
+## 12. Appendix
+
+### A. Glossary of Terms
+
+- **Azure AD (Azure Active Directory)**: Microsoft’s cloud-based identity and access management service.
+- **Key Vault**: Azure service for storing and accessing secrets securely.
+- **Function App**: Azure service for running small pieces of code (functions) without worrying about application infrastructure.
+- **App Service Plan**: Defines the compute resources for your web app.
+
+### B. Resource Naming Conventions
+
+- **Key Vault**: `GPT-X-KV-<InstallationId>`
+- **Storage Account**: `gptxstore<InstallationId>`
+- **Cosmos DB Account**: `gptorchestrator-<InstallationId>`
+- **OpenAI Services**: `GPT-X-OpenAI-<InstallationId>`, `GPT-X-OpenAI2-<InstallationId>`, etc.
+- **Function App**: `GPTOrchestratorSvc-<InstallationId>`
+- **Web App**: `ChatGPT-X-<InstallationId>`
+
+*Note: `<InstallationId>` is a unique 12-digit number generated during installation.*
+
+### C. Version History
+
+| Version | Date          | Description                                                                           |
+|---------|---------------|---------------------------------------------------------------------------------------|
+| 1.0     | 10/3/2024     | Initial release of the installation guide. Need to confirm details and import images. |
+
+---
+
+*End of Document*

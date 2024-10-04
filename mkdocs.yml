@@ -21,6 +21,8 @@ extra_css:
 markdown_extensions:
   - attr_list
   - md_in_html
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
