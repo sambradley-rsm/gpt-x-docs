@@ -436,7 +436,3 @@ By following this method, you can ensure that all required resources are correct
 | Version | Date          | Description                                                                           |
 |---------|---------------|---------------------------------------------------------------------------------------|
 | 1.0     | 10/3/2024     | Initial release of the installation guide. Need to confirm details and import images. |
-
----
-
-*End of Document*
