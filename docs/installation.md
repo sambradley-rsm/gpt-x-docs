@@ -202,7 +202,7 @@ The installation script will verify the following:
 #### PublishGPTPlans Utility
 
 - **Deployment Location**:
-    - `Program Files (x86)\GPT-X-PIE\PublishGPTPlans-<InstallationId>`
+    - `Program Files (x86)\GPT-X\PublishGPTPlans-<InstallationId>`
 - **Data Deployment**:
     - Select a root folder when prompted to deploy utility data.
 
