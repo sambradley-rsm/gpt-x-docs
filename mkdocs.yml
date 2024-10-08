@@ -9,6 +9,11 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - content.tabs.link
 nav:
   - Overview: index.md
   - Architecture: components.md
@@ -21,6 +26,12 @@ extra_css:
 markdown_extensions:
   - attr_list
   - md_in_html
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.details
   - pymdownx.tasklist:
       custom_checkbox: true
       clickable_checkbox: true
@@ -29,5 +40,3 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  
-

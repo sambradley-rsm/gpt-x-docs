@@ -1,15 +1,15 @@
 # GPT-X Platform Installation Guide
 
-**Version: 1.0**  
+**Version: 0.1**  
 _Last Updated: 10/8/2024_
 
 ---
 
-## 1. Introduction
+## Introduction
 
 ### Purpose of the Guide
 
-This installation guide provides step-by-step instructions for installing the GPT-X Platform—a cutting-edge, Azure-based Platform-as-a-Service (PaaS) solution. It is intended for IT administrators and DevOps professionals responsible for deploying enterprise applications.
+This installation guide provides step-by-step instructions for installing the GPT-X Platform — a cutting-edge, Azure-based Platform-as-a-Service (PaaS) solution. It is intended for IT administrators and DevOps professionals responsible for deploying enterprise applications.
 
 ### Product Overview
 
@@ -22,70 +22,99 @@ GPT-X Platform leverages advanced AI capabilities to deliver transformative solu
 
 ---
 
-## 2. System Requirements
+## System Requirements
 
 - **PowerShell**: Version 5.1 or higher
 - **Azure CLI**: Version 2.30.0 or higher
 
 ---
 
-## 3. Pre-Installation Checklist
+## Pre-Installation Checklist
+
+- [ ] **Permissions**: Verify that you have one of the following roles on the VM/PC on which the installation will be ran:
+    - MS Windows Administrator
+    - Member of MS Windows Local Administrators
+
+    This is required to install the product binaries to the Program Files(x86) directory
 
 - [ ] **Azure Subscription Access**: Verify that you have one of the following role sets in the target Azure subscription:
     - Contributor **and** User Access Administrator roles
     - Owner role
 - [ ] **Azure Quotas**: Ensure sufficient quotas for services like Compute, Storage, Cosmos DB, and OpenAI.
-- [ ] **Permissions**: Confirm that you have the required Azure AD roles (Application Administrator) and local administrative rights.
 - [ ] **Dependencies Installed**:
     - [ ] PowerShell modules
     - [ ] Azure CLI and necessary extensions
-- [ ] **Backup Existing Configurations**: If upgrading, back up existing configurations and data.
-- [ ] **Disable IE Enhanced Security Configuration**: Required for PowerShell scripts interacting with MS Graph API.
+- [ ] **Disable Internet Explorer Enhanced Security Configuration**: Required for PowerShell scripts interacting with MS Graph API.
+- [ ] **Azure Resource Provider Registration**: Each Azure service requires its corresponding resource provider to be registered at the subscription level before you can create or manage resources of that type. If you have previously used a service in the target Azure subscription, the Resource Provider is likely already registered. If they are not registered, you may encounter errors when trying to deploy resources.
+
+    ??? info "Resouce Provider Mapping"
+        | **Azure Service**                          | **Required Resource Provider Namespace**       |
+        |--------------------------------------------|-----------------------------------------------|
+        | Azure Key Vault                            | `Microsoft.KeyVault`                          |
+        | Cosmos DB                                   | `Microsoft.DocumentDB`                        |
+        | Cognitive Services (e.g., Form Recognition) | `Microsoft.CognitiveServices`                 |
+        | App Service (Web Apps, Function Apps)       | `Microsoft.Web`                               |
+        | Azure Storage                               | `Microsoft.Storage`                           |
+        | Application Insights                        | `Microsoft.Insights`                          |
+        | Azure OpenAI Services                       | `Microsoft.CognitiveServices`                 |
+        | Virtual Machines (if applicable)            | `Microsoft.Compute`                           |
+        | Azure Active Directory (Azure AD/Entra ID)  | `Microsoft.AAD`                               |
+
+    ??? info "Azure CLI command to check if all required Resource Providers are registered"
+        ``` bash
+        az provider show --namespace Microsoft.KeyVault
+        az provider show --namespace Microsoft.DocumentDB
+        az provider show --namespace Microsoft.CognitiveServices
+        az provider show --namespace Microsoft.Web
+        az provider show --namespace Microsoft.Storage
+        az provider show --namespace Microsoft.Insights
+        az provider show --namespace Microsoft.Compute
+        az provider show --namespace Microsoft.AAD
+        ```
 
 ---
 
-## 4. Security Considerations
+## Installation Package Overview
 
-### Identity and Access Management
+Before proceeding with the installation, familiarize yourself with the contents of the installation package. Each file has a specific role in the installation and configuration of the GPT-X Platform. Below is a description of the key files and folders included in the package.
 
-- **Azure AD Roles**: Assign minimal necessary permissions following the principle of least privilege.
-- **Service Principals**: Securely manage service principals and their credentials.
+| **File/Folder**                          | **Description**                                                                                                    |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| `GPT-X-Setup.bat`                        | A batch file that initiates the installation process. It serves as the entry point for running the installation scripts. |
+| `iHealthSetup.ps1`                       | The main PowerShell script responsible for creating and configuring Azure resources as part of the installation.     |
+| `Logger.ps1`                             | A PowerShell script that logs the installation steps and tracks any issues or errors encountered during the process. |
+| `GPT-X_Installation_Guide.<version>.pdf` | The installation guide in PDF format, providing detailed steps and explanations for setting up the GPT-X Platform.   |
+| `$Installation<version>.txt`               | A text file containing installation keys and other information regarding the setup process.             |
+| `$ReleaseNotes_<version>.xml`                 | A document outlining the latest updates, improvements, and known issues for the given release of the GPT-X Platform. |
+| `error.txt`                                  | This file appears if an error occurs during the installation, containing specific error messages to help with troubleshooting. |
+| `logs/`                          | Contains log files that provide detailed information on the installation process, useful for debugging any issues.    |
 
-### Encryption and Key Management
 
-- **Key Vault Usage**: All sensitive data like keys and connection strings are stored in Azure Key Vault.
-- **Key Rotation**: Implement regular key rotation policies for keys stored in Key Vault.
-
-### Compliance Requirements
-
-- **Data Residency**: Be aware of data residency requirements relevant to your region (e.g., GDPR).
-- **Auditing**: Enable auditing features in Azure to track access and changes to resources.
 
 ---
 
-## 5. Installation Steps
+## Installation Steps
 
-### 5.1 Checking/Installing Prerequisites
+### 1. Run the Installer
+
+Launch the Command Line, navigate to the GPT-X directory, and execute `GPT-X-Setup.bat` to start the installation.
+
+### 2. Checking/Installing Prerequisites
 
 The installation script will verify the following:
 
 - **Azure CLI**: Checks for the required version and prompts for installation or upgrade.
 - **Azure CLI Extensions**: Installs necessary extensions.
 - **PowerShell Modules**: Installs or updates required modules.
+- **Installation Key**: The installation will request your Installation Key. This can be found in the `$Installation<version>.txt` file.
 
-### 5.2 Run the Installer
+### 3. Key Vault Selection/Creation
 
-Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
+**Select or Create Key Vault**: The script will search for exisitng Key Vaults and give you the option whether to choose an existing Key Vault, or create a new one (reccomended for new installations).
 
-### 5.3 Key Vault Selection/Creation
+**Resource Group Selection**: Select an existing Resource Group or create a new one.
 
-1. **Select or Create Key Vault**:
-    - The script will list existing Key Vaults.
-    - Choose an existing Key Vault or create a new one (recommended for new installations).
-2. **Resource Group Selection**:
-    - Select an existing Resource Group or create a new one.
-3. **Permissions**:
-    - Ensure you have access rights to the Key Vault if upgrading.
+**Permissions**: Ensure you have access rights to the Key Vault if upgrading.
 
 **Resources Created**:
 
@@ -100,12 +129,11 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 
 *Note: The Installation ID is a 12-digit random number used for resource naming.*
 
-### 5.4 Storage Account Selection/Creation
+### 4. Storage Account Selection/Creation
 
-1. **Storage Account Options**:
-    - Select an existing Storage Account or create a new one.
-2. **Naming**:
-    - New Storage Accounts will be named `gptxstore<InstallationId>`.
+**Storage Account Options**: Select an existing Storage Account or create a new one.
+
+**Naming**: New Storage Accounts will be named `gptxstore<InstallationId>`.
 
 **Key Vault Secrets Created/Updated**:
 
@@ -113,24 +141,22 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 
 *Note: Function Apps cannot reference Storage Accounts in other Azure subscriptions.*
 
-### 5.5 Cosmos DB Selection/Creation
+### 5. Cosmos DB Selection/Creation
 
-1. **Cosmos DB Options**:
-    - Select an existing Cosmos DB Account or create a new one.
-2. **Naming**:
-    - New Cosmos DB Accounts will be named `gptorchestrator-<InstallationId>`.
+**Cosmos DB Options**: Select an existing Cosmos DB Account or create a new one.
+
+**Naming**: New Cosmos DB Accounts will be named `gptorchestrator-<InstallationId>`.
 
 **Key Vault Secrets Created/Updated**:
 
 - `CosmosDBAccountName`
 - `CosmosDBKey`
 
-### 5.6 Form Recognition Cognitive Service
+### 6. Form Recognition Cognitive Service
 
-1. **Service Options**:
-    - Select an existing Form Recognition service or create a new one.
-2. **Naming**:
-    - New services will be named `OCR4Images-<InstallationId>`.
+**Service Options**: Select an existing Form Recognition service or create a new one.
+
+**Naming**: New services will be named `OCR4Images-<InstallationId>`.
 
 **Key Vault Secrets Created/Updated**:
 
@@ -138,12 +164,11 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 - `OCR4ImagesKey`
 - `OCR4ImagesURL`
 
-### 5.7 Speech Service Selection/Creation
+### 7. Speech Service Selection/Creation
 
-1. **Service Options**:
-    - Select an existing Speech Service or create a new one.
-2. **Naming**:
-    - New services will be named `GPT-X-Speech-<InstallationId>`.
+**Service Options**: Select an existing Speech Service or create a new one.
+
+**Naming**: New services will be named `GPT-X-Speech-<InstallationId>`.
 
 **Key Vault Secrets Created/Updated**:
 
@@ -151,16 +176,15 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 - `GPT-X-SpeechKey`
 - `GPT-X-SpeechURL`
 
-### 5.8 OpenAI Service Pool Creation
+### 8. OpenAI Service Pool Creation
 
-1. **Define Pool Size**:
-    - Enter the number of OpenAI services to create (up to 8).
-2. **Select Model**:
-     - Choose the OpenAI model to deploy across the services.
-3. **Service Creation**:
-     - The script will create or reuse services, potentially across multiple subscriptions/locations based on quota availability.
-4. **Naming**:
-     - Services will be named `GPT-X-OpenAI-<InstallationId>`, `GPT-X-OpenAI2-<InstallationId>`, etc.
+**Define Pool Size**: Enter the number of OpenAI services to create (up to 20).
+
+**Select Model**: Choose the OpenAI model to deploy across the services. Reccomended: GPT-4o.
+
+**Service Creation**: The script will create or reuse services, potentially across multiple subscriptions/locations based on quota availability.
+
+**Naming**: Services will be named `GPT-X-OpenAI-<InstallationId>`, `GPT-X-OpenAI4Search-<InstallationId>`
 
 **Key Vault Secrets Created/Updated**:
 
@@ -170,7 +194,7 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 - `OpenAIModelName`
 - `OpenAIModelDeploymentURL`
 
-### 5.9 Application and Function Deployment
+### 9. Application and Function Deployment
 
 #### PublishGPTPlans Utility
 
@@ -207,7 +231,7 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 - `ChatGPT-X-ClientId`
 - `ChatGPT-X-ClientSecret`
 
-### 5.10 Microsoft Teams App Deployment
+### 10. Microsoft Teams App Deployment
 
 1. **Connect to Microsoft Teams**:
     - The script will attempt to connect using your current Azure account.
@@ -220,7 +244,7 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 
 ---
 
-## 6. Post-Installation Steps
+## Post-Installation Steps
 
 ### Verification
 
@@ -255,7 +279,7 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 
 ---
 
-## 7. Maintenance and Monitoring
+## Maintenance and Monitoring
 
 ### System Monitoring
 
@@ -280,7 +304,7 @@ Launch the Command Line and execute `GPT-X-Setup.bat` to start the installation.
 
 ---
 
-## 8. Terraform Installation Method
+## Terraform Installation Method
 
 ### Can I use Terraform to install GPT-X instead of PowerShell and the CLI?
 
@@ -320,7 +344,7 @@ By following this method, you can ensure that all required resources are correct
 
 ---
 
-## 9. Uninstallation and Rollback Procedures
+## Uninstallation and Rollback Procedures
 
 ### Uninstallation Process
 
@@ -339,7 +363,7 @@ By following this method, you can ensure that all required resources are correct
 
 ---
 
-## 10. Troubleshooting
+## Troubleshooting
 
 ### Common Errors and Fixes
 
@@ -362,7 +386,7 @@ By following this method, you can ensure that all required resources are correct
 
 ---
 
-## 11. Support Information
+## Support Information
 
 ### Contact Support
 
@@ -372,7 +396,7 @@ By following this method, you can ensure that all required resources are correct
 
 ---
 
-## 12. Appendix
+## Appendix
 
 ### A. Glossary of Terms
 
@@ -396,4 +420,5 @@ By following this method, you can ensure that all required resources are correct
 
 | Version | Date          | Description                                                                           |
 |---------|---------------|---------------------------------------------------------------------------------------|
-| 1.0     | 10/3/2024     | Initial release of the installation guide. Need to confirm details and import images. |
+| 0.0     | 10/3/2024     | Initial release of the installation guide. Need to confirm details and import images. |
+| 0.1     | 10/8/2024     | Format changes and addition of Azure Resource Provider Registration pre-requisite.    |
