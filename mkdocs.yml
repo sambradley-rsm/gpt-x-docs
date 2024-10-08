@@ -14,6 +14,13 @@ theme:
     - content.code.select
     - content.code.annotate
     - content.tabs.link
+    - navigation.instant
+    - navigation.tabs
+    - toc.integrate
+    - header.autolink
+    - navigation.tracking
+    - navigation.sections
+
 nav:
   - Overview: index.md
   - Architecture: components.md
@@ -27,6 +34,8 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - admonition
+  - toc:
+      permalink: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span

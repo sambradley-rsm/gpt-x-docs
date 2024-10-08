@@ -3,6 +3,8 @@
 **Version: 0.1**  
 _Last Updated: 10/8/2024_
 
+<button class="pdf-button" onclick="window.print()">Print as PDF</button>
+
 ---
 
 ## Introduction
@@ -40,36 +42,37 @@ GPT-X Platform leverages advanced AI capabilities to deliver transformative solu
 - [ ] **Azure Subscription Access**: Verify that you have one of the following role sets in the target Azure subscription:
     - Contributor **and** User Access Administrator roles
     - Owner role
-- [ ] **Azure Quotas**: Ensure sufficient quotas for services like Compute, Storage, Cosmos DB, and OpenAI.
-- [ ] **Dependencies Installed**:
-    - [ ] PowerShell modules
-    - [ ] Azure CLI and necessary extensions
+- [ ] **Azure OpenAI Quota Read Access**: The installation script will attempt to read quota levels on behalf of the installer. Therefore, installer must have **Congitive Services Contributor** role at the subscription level.
+    - [Learn more about Azure OpenAI quotas here](https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits)
+    - Manage quotas and request increases in the [Azure AI Studio](https://ai.azure.com).   
 - [ ] **Disable Internet Explorer Enhanced Security Configuration**: Required for PowerShell scripts interacting with MS Graph API.
-- [ ] **Azure Resource Provider Registration**: Each Azure service requires its corresponding resource provider to be registered at the subscription level before you can create or manage resources of that type. If you have previously used a service in the target Azure subscription, the Resource Provider is likely already registered. If they are not registered, you may encounter errors when trying to deploy resources.
+- [ ] **Azure Resource Provider Namespace Registration**: Each Azure service requires its corresponding resource provider namespace to be registered at the subscription level before you can create or manage resources of that type. If you have previously used a service in the target Azure subscription, the resource provider namespace is likely already registered. If they are not registered, you may encounter errors when trying to deploy resources.
 
     ??? info "Resouce Provider Mapping"
-        | **Azure Service**                          | **Required Resource Provider Namespace**       |
-        |--------------------------------------------|-----------------------------------------------|
-        | Azure Key Vault                            | `Microsoft.KeyVault`                          |
+        | **Azure Service**                           | **Required Resource Provider Namespace**      |
+        |---------------------------------------------|-----------------------------------------------|
+        | Azure Key Vault                             | `Microsoft.KeyVault`                          |
         | Cosmos DB                                   | `Microsoft.DocumentDB`                        |
         | Cognitive Services (e.g., Form Recognition) | `Microsoft.CognitiveServices`                 |
         | App Service (Web Apps, Function Apps)       | `Microsoft.Web`                               |
         | Azure Storage                               | `Microsoft.Storage`                           |
         | Application Insights                        | `Microsoft.Insights`                          |
         | Azure OpenAI Services                       | `Microsoft.CognitiveServices`                 |
+        | Azure AI Search                             | `Microsoft.Search`                            |
         | Virtual Machines (if applicable)            | `Microsoft.Compute`                           |
         | Azure Active Directory (Azure AD/Entra ID)  | `Microsoft.AAD`                               |
 
-    ??? info "Azure CLI command to check if all required Resource Providers are registered"
+    ??? info "Azure CLI command to check if all required resource provider namespaces are registered"
         ``` bash
-        az provider show --namespace Microsoft.KeyVault
-        az provider show --namespace Microsoft.DocumentDB
-        az provider show --namespace Microsoft.CognitiveServices
-        az provider show --namespace Microsoft.Web
-        az provider show --namespace Microsoft.Storage
-        az provider show --namespace Microsoft.Insights
-        az provider show --namespace Microsoft.Compute
-        az provider show --namespace Microsoft.AAD
+        az provider show --namespace Microsoft.KeyVault --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.DocumentDB --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.CognitiveServices --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.Search --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.Web --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.Storage --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.Insights --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.Compute --query "{Namespace: namespace, RegistrationState: registrationState}"
+        az provider show --namespace Microsoft.AAD --query "{Namespace: namespace, RegistrationState: registrationState}"
         ```
 
 ---
@@ -279,36 +282,9 @@ The installation script will verify the following:
 
 ---
 
-## Maintenance and Monitoring
-
-### System Monitoring
-
-- **Application Insights**:
-    - Utilize Application Insights for performance monitoring and diagnostics.
-- **Azure Monitor**:
-    - Set up Azure Monitor to track resource utilization and health.
-
-### Resource Scaling
-
-- **Manual Scaling**:
-    - Adjust resource tiers for services like Cosmos DB and App Service Plans through the Azure Portal.
-- **Auto-Scaling**:
-    - Configure auto-scaling rules where applicable to handle variable workloads.
-
-### Updating and Patching
-
-- **Application Updates**:
-    - Follow provided instructions for updating the GPT-X application when new versions are released.
-- **Azure Updates**:
-    - Keep Azure services up to date by applying patches and updates as recommended by Microsoft.
-
----
-
 ## Terraform Installation Method
 
-### Can I use Terraform to install GPT-X instead of PowerShell and the CLI?
-
-Yes, you can use **Terraform** to install GPT-X, but we recommend starting with the supported installation method in a development/test sandbox environment. This will help you understand the necessary Azure resources and configurations before deploying them with Terraform.
+You can use **Terraform** to install GPT-X, but we recommend starting with the supported installation method in a development/test sandbox environment. This will help you understand the necessary Azure resources and configurations before deploying them with Terraform.
 
 ### Recommended Workflow
 
@@ -341,6 +317,31 @@ Yes, you can use **Terraform** to install GPT-X, but we recommend starting with 
     During installation, you can choose to select existing Azure resources if applicable. This provides flexibility in managing and deploying resources across multiple environments.
 
 By following this method, you can ensure that all required resources are correctly configured and tested before deploying GPT-X using Terraform in critical environments.
+
+---
+
+## Maintenance and Monitoring
+
+### System Monitoring
+
+- **Application Insights**:
+    - Utilize Application Insights for performance monitoring and diagnostics.
+- **Azure Monitor**:
+    - Set up Azure Monitor to track resource utilization and health.
+
+### Resource Scaling
+
+- **Manual Scaling**:
+    - Adjust resource tiers for services like Cosmos DB and App Service Plans through the Azure Portal.
+- **Auto-Scaling**:
+    - Configure auto-scaling rules where applicable to handle variable workloads.
+
+### Updating and Patching
+
+- **Application Updates**:
+    - Follow provided instructions for updating the GPT-X application when new versions are released.
+- **Azure Updates**:
+    - Keep Azure services up to date by applying patches and updates as recommended by Microsoft.
 
 ---
 
