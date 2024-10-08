@@ -1,0 +1,718 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sambradley-rsm.github.io/gpt-x-docs/components/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../installation/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Architecture - GPT-X</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GPT-X" class="md-header__button md-logo" aria-label="GPT-X" data-md-component="logo">
+      
+  <img src="../assets/RSM_White.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GPT-X
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link">
+        
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../user-guide/" class="md-tabs__link">
+        
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../azure-innovate/" class="md-tabs__link">
+        
+  
+    
+  
+  Azure Innovate Assessment
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GPT-X" class="md-nav__button md-logo" aria-label="GPT-X" data-md-component="logo">
+      
+  <img src="../assets/RSM_White.svg" alt="logo">
+
+    </a>
+    GPT-X
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#application-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpt-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPT Orchestrator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChatGPT-X
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-openai-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure OpenAI Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-cosmos-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Cosmos DB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-accounts-and-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Accounts and Keys
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure-innovate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure Innovate Assessment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<h2 id="application-components">Application Components<a class="headerlink" href="#application-components" title="Permanent link">&para;</a></h2>
+<h3 id="gpt-orchestrator">GPT Orchestrator<a class="headerlink" href="#gpt-orchestrator" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview">Azure Function</a></p>
+<p>The main orchestrator function app that handles the processing of requests, retrieval of data, and orchestration of prompt workflows.  </p>
+<h3 id="chatgpt-x">ChatGPT-X<a class="headerlink" href="#chatgpt-x" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/azure/app-service/overview">Azure Web App</a></p>
+<p>Web application deployed for user interaction (including Teams integration).  </p>
+<h3 id="azure-openai-service">Azure OpenAI Service<a class="headerlink" href="#azure-openai-service" title="Permanent link">&para;</a></h3>
+<p>Deploy and manage OpenAI models such as GPT-3.5/4/4o for handling advanced natural language processing tasks such as content generation, summarization, extraction, and automation, all within the secure and scalable Azure cloud environment.</p>
+<h3 id="azure-cosmos-db">Azure Cosmos DB<a class="headerlink" href="#azure-cosmos-db" title="Permanent link">&para;</a></h3>
+<p>Stores and manages structured data, including Plans, prompts, user interactions, and external system data.</p>
+<h2 id="sequence-diagram">Sequence Diagram<a class="headerlink" href="#sequence-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant AppService as ChatGPT-X
+    participant GPTOrchestrator as GPT Orchestrator
+    participant SemanticKernel as Semantic Kernel
+    participant OpenAI as Azure OpenAI
+    participant CosmosDB as Azure Cosmos DB
+    participant ExternalService as External Systems
+    User-&gt;&gt;AppService: Submits Query/Request
+    AppService-&gt;&gt;GPTOrchestrator: Sends query details and Plan
+    GPTOrchestrator-&gt;&gt;SemanticKernel: Orchestrates Plan execution
+    SemanticKernel-&gt;&gt;CosmosDB: Retrieve necessary data (e.g., history, user inputs)
+    SemanticKernel-&gt;&gt;ExternalService: Retrieve external data (FHIR, Epic, Availity)
+    ExternalService-&gt;&gt;SemanticKernel: Returns external data (if applicable)
+    SemanticKernel-&gt;&gt;OpenAI: Execute prompts in Azure OpenAI
+    OpenAI-&gt;&gt;SemanticKernel: Return LLM response
+    SemanticKernel-&gt;&gt;GPTOrchestrator: Aggregate and process responses
+    GPTOrchestrator-&gt;&gt;AppService: Return processed data to GPT-X
+    AppService-&gt;&gt;User: Display results to the user</code></pre>
+<h2 id="azure-services">Azure Services<a class="headerlink" href="#azure-services" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription">Azure Subscription</a></strong><br />
+<strong>Purpose:</strong> The environment where all resources will be created and managed.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal">Azure Resource Group</a></strong><br />
+<strong>Purpose:</strong> Logical grouping of all Azure resources for easier management.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/key-vault/general/overview">Azure Key Vault</a></strong><br />
+<strong>Purpose:</strong> To store secrets such as connection strings, account keys, and credentials securely.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/cosmos-db/introduction">Azure Cosmos DB</a></strong><br />
+<strong>Purpose:</strong> NoSQL and vector database to store large-scale, distributed data.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview">Azure Storage Account</a></strong><br />
+<strong>Purpose:</strong> To store binary large objects (e.g., files, logs) used in the application.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview">Azure Function App</a></strong><br />
+<strong>Purpose:</strong> Serverless compute service to run functions in the cloud.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/app-service/overview">Azure Web App</a></strong><br />
+<strong>Purpose:</strong> Host web applications or APIs for the GPT-X service.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans">Azure App Service Plan</a></strong><br />
+<strong>Purpose:</strong> Defines the underlying resources that the web apps and function apps will use.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">Azure Application Insights</a></strong><br />
+<strong>Purpose:</strong> To monitor and provide insights into the performance and usage of the application.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/">Azure Document Intelligence (Form Recognizer Cognitive Service)</a></strong><br />
+<strong>Purpose:</strong> To extract structured data from documents, such as OCR (Optical Character Recognition) processing. </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/overview">Azure Speech Service</a></strong><br />
+<strong>Purpose:</strong> Provides speech recognition, text-to-speech, and speech translation capabilities.  </p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/cognitive-services/openai/overview">Azure OpenAI Services</a></strong><br />
+<strong>Purpose:</strong> Deploy and manage OpenAI models such as GPT-4o/4o-mini for handling advanced natural language processing tasks such as content generation, summarization, extraction, and automation, all within the secure and scalable Azure cloud environment.</p>
+</li>
+<li>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search">Azure AI Search</a></strong><br />
+<strong>Purpose:</strong> Store and query vectorized data from the GPT-X application. </p>
+</li>
+</ul>
+<h2 id="service-accounts-and-keys">Service Accounts and Keys<a class="headerlink" href="#service-accounts-and-keys" title="Permanent link">&para;</a></h2>
+<p><strong>Key Vault Secrets created during installation</strong>:</p>
+<ul>
+<li><code>ToFInstallationId</code>: Installation ID (12-digit random number).</li>
+<li><code>ToFInstallationGuid</code>: Installation GUID.</li>
+<li><code>ToFSubscriptionId</code>: Azure Subscription ID.</li>
+<li><code>ToFResourceGroup</code>: Resource group name.</li>
+<li><code>CosmosDBKey</code>: Key for accessing the Cosmos DB account.</li>
+<li><code>StorageAccountConnection</code>: Connection string for the Azure Storage account.</li>
+<li><code>OCR4ImagesKey</code>, <code>Speech Service Key</code>, <code>OpenAI Service Keys</code>, etc., for accessing respective services.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.tabs", "toc.integrate", "header.autolink", "navigation.tracking", "navigation.sections"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

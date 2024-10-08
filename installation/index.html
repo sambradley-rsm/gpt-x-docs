@@ -1,0 +1,1528 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sambradley-rsm.github.io/gpt-x-docs/installation/">
+      
+      
+        <link rel="prev" href="../components/">
+      
+      
+        <link rel="next" href="../user-guide/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Installation - GPT-X</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gpt-x-platform-installation-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GPT-X" class="md-header__button md-logo" aria-label="GPT-X" data-md-component="logo">
+      
+  <img src="../assets/RSM_White.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GPT-X
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../components/" class="md-tabs__link">
+        
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../user-guide/" class="md-tabs__link">
+        
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../azure-innovate/" class="md-tabs__link">
+        
+  
+    
+  
+  Azure Innovate Assessment
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GPT-X" class="md-nav__button md-logo" aria-label="GPT-X" data-md-component="logo">
+      
+  <img src="../assets/RSM_White.svg" alt="logo">
+
+    </a>
+    GPT-X
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose-of-the-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose of the Guide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Product Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-time-estimate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Time Estimate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-installation-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Installation Checklist
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-package-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Package Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-run-the-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Run the Installer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-checkinginstalling-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Checking/Installing Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-key-vault-selectioncreation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Key Vault Selection/Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-storage-account-selectioncreation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Storage Account Selection/Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-cosmos-db-selectioncreation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Cosmos DB Selection/Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-form-recognition-cognitive-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Form Recognition Cognitive Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-speech-service-selectioncreation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Speech Service Selection/Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-openai-service-pool-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. OpenAI Service Pool Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-application-and-function-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Application and Function Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Application and Function Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishgptplans-utility" class="md-nav__link">
+    <span class="md-ellipsis">
+      PublishGPTPlans Utility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gptorchestratorsvc-function-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPTOrchestratorSvc Function App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt-x-app-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChatGPT-X App Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-microsoft-teams-app-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Microsoft Teams App Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Installation Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Post-Installation Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing the Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-production-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Production Environments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terraform-installation-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terraform Installation Method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terraform Installation Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance and Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance and Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-and-patching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating and Patching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation-and-rollback-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstallation and Rollback Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uninstallation and Rollback Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uninstallation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstallation Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rollback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-errors-and-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Errors and Fixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-file-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log File Location
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support Information
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Support Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contact-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact Support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appendix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-glossary-of-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Glossary of Terms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-resource-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Resource Naming Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Version History
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure-innovate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure Innovate Assessment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="gpt-x-platform-installation-guide">GPT-X Platform Installation Guide<a class="headerlink" href="#gpt-x-platform-installation-guide" title="Permanent link">&para;</a></h1>
+<p><strong>Version: 0.1</strong><br />
+<em>Last Updated: 10/8/2024</em></p>
+<p><button class="pdf-button" onclick="window.print()">Print as PDF</button></p>
+<hr />
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="purpose-of-the-guide">Purpose of the Guide<a class="headerlink" href="#purpose-of-the-guide" title="Permanent link">&para;</a></h3>
+<p>This installation guide provides step-by-step instructions for installing the GPT-X Platform — a cutting-edge, Azure-based Platform-as-a-Service (PaaS) solution. It is intended for IT administrators and DevOps professionals responsible for deploying enterprise applications.</p>
+<h3 id="product-overview">Product Overview<a class="headerlink" href="#product-overview" title="Permanent link">&para;</a></h3>
+<p>GPT-X Platform leverages advanced AI capabilities to deliver transformative solutions for your enterprise. It integrates seamlessly with Azure services, offering scalability, security, and high availability.</p>
+<h3 id="installation-time-estimate">Installation Time Estimate<a class="headerlink" href="#installation-time-estimate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Initial Setup</strong>: Approximately 2-3 hours, depending on system configuration and network conditions.</li>
+<li><strong>Upgrade/Repair</strong>: Approximately 1-2 hours.</li>
+</ul>
+<hr />
+<h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>PowerShell</strong>: Version 5.1 or higher</li>
+<li><strong>Azure CLI</strong>: Version 2.30.0 or higher</li>
+</ul>
+<hr />
+<h2 id="pre-installation-checklist">Pre-Installation Checklist<a class="headerlink" href="#pre-installation-checklist" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> <strong>Permissions</strong>: Verify that you have one of the following roles on the VM/PC on which the installation will be ran:</p>
+<ul>
+<li>MS Windows Administrator</li>
+<li>Member of MS Windows Local Administrators</li>
+</ul>
+<p>This is required to install the product binaries to the Program Files(x86) directory</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> <strong>Azure Subscription Access</strong>: Verify that you have one of the following role sets in the target Azure subscription:</p>
+<ul>
+<li>Contributor <strong>and</strong> User Access Administrator roles</li>
+<li>Owner role</li>
+</ul>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> <strong>Azure OpenAI Quota Read Access</strong>: The installation script will attempt to read quota levels on behalf of the installer. Therefore, installer must have <strong>Congitive Services Contributor</strong> role at the subscription level.<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits">Learn more about Azure OpenAI quotas here</a></li>
+<li>Manage quotas and request increases in the <a href="https://ai.azure.com">Azure AI Studio</a>.   </li>
+</ul>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> <strong>Disable Internet Explorer Enhanced Security Configuration</strong>: Required for PowerShell scripts interacting with MS Graph API.</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> <strong>Azure Resource Provider Namespace Registration</strong>: Each Azure service requires its corresponding resource provider namespace to be registered at the subscription level before you can create or manage resources of that type. If you have previously used a service in the target Azure subscription, the resource provider namespace is likely already registered. If they are not registered, you may encounter errors when trying to deploy resources.</p>
+<details class="info">
+<summary>Resouce Provider Mapping</summary>
+<table>
+<thead>
+<tr>
+<th><strong>Azure Service</strong></th>
+<th><strong>Required Resource Provider Namespace</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Key Vault</td>
+<td><code>Microsoft.KeyVault</code></td>
+</tr>
+<tr>
+<td>Cosmos DB</td>
+<td><code>Microsoft.DocumentDB</code></td>
+</tr>
+<tr>
+<td>Cognitive Services (e.g., Form Recognition)</td>
+<td><code>Microsoft.CognitiveServices</code></td>
+</tr>
+<tr>
+<td>App Service (Web Apps, Function Apps)</td>
+<td><code>Microsoft.Web</code></td>
+</tr>
+<tr>
+<td>Azure Storage</td>
+<td><code>Microsoft.Storage</code></td>
+</tr>
+<tr>
+<td>Application Insights</td>
+<td><code>Microsoft.Insights</code></td>
+</tr>
+<tr>
+<td>Azure OpenAI Services</td>
+<td><code>Microsoft.CognitiveServices</code></td>
+</tr>
+<tr>
+<td>Azure AI Search</td>
+<td><code>Microsoft.Search</code></td>
+</tr>
+<tr>
+<td>Virtual Machines (if applicable)</td>
+<td><code>Microsoft.Compute</code></td>
+</tr>
+<tr>
+<td>Azure Active Directory (Azure AD/Entra ID)</td>
+<td><code>Microsoft.AAD</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info">
+<summary>Azure CLI command to check if all required resource provider namespaces are registered</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.KeyVault<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.DocumentDB<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.CognitiveServices<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Search<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Web<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Storage<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Insights<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Compute<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>az<span class="w"> </span>provider<span class="w"> </span>show<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.AAD<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;{Namespace: namespace, RegistrationState: registrationState}&quot;</span>
+</span></code></pre></div>
+</details>
+</li>
+</ul>
+<hr />
+<h2 id="installation-package-overview">Installation Package Overview<a class="headerlink" href="#installation-package-overview" title="Permanent link">&para;</a></h2>
+<p>Before proceeding with the installation, familiarize yourself with the contents of the installation package. Each file has a specific role in the installation and configuration of the GPT-X Platform. Below is a description of the key files and folders included in the package.</p>
+<table>
+<thead>
+<tr>
+<th><strong>File/Folder</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GPT-X-Setup.bat</code></td>
+<td>A batch file that initiates the installation process. It serves as the entry point for running the installation scripts.</td>
+</tr>
+<tr>
+<td><code>iHealthSetup.ps1</code></td>
+<td>The main PowerShell script responsible for creating and configuring Azure resources as part of the installation.</td>
+</tr>
+<tr>
+<td><code>Logger.ps1</code></td>
+<td>A PowerShell script that logs the installation steps and tracks any issues or errors encountered during the process.</td>
+</tr>
+<tr>
+<td><code>GPT-X_Installation_Guide.&lt;version&gt;.pdf</code></td>
+<td>The installation guide in PDF format, providing detailed steps and explanations for setting up the GPT-X Platform.</td>
+</tr>
+<tr>
+<td><code>$Installation&lt;version&gt;.txt</code></td>
+<td>A text file containing installation keys and other information regarding the setup process.</td>
+</tr>
+<tr>
+<td><code>$ReleaseNotes_&lt;version&gt;.xml</code></td>
+<td>A document outlining the latest updates, improvements, and known issues for the given release of the GPT-X Platform.</td>
+</tr>
+<tr>
+<td><code>error.txt</code></td>
+<td>This file appears if an error occurs during the installation, containing specific error messages to help with troubleshooting.</td>
+</tr>
+<tr>
+<td><code>logs/</code></td>
+<td>Contains log files that provide detailed information on the installation process, useful for debugging any issues.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="installation-steps">Installation Steps<a class="headerlink" href="#installation-steps" title="Permanent link">&para;</a></h2>
+<h3 id="1-run-the-installer">1. Run the Installer<a class="headerlink" href="#1-run-the-installer" title="Permanent link">&para;</a></h3>
+<p>Launch the Command Line, navigate to the GPT-X directory, and execute <code>GPT-X-Setup.bat</code> to start the installation.</p>
+<h3 id="2-checkinginstalling-prerequisites">2. Checking/Installing Prerequisites<a class="headerlink" href="#2-checkinginstalling-prerequisites" title="Permanent link">&para;</a></h3>
+<p>The installation script will verify the following:</p>
+<ul>
+<li><strong>Azure CLI</strong>: Checks for the required version and prompts for installation or upgrade.</li>
+<li><strong>Azure CLI Extensions</strong>: Installs necessary extensions.</li>
+<li><strong>PowerShell Modules</strong>: Installs or updates required modules.</li>
+<li><strong>Installation Key</strong>: The installation will request your Installation Key. This can be found in the <code>$Installation&lt;version&gt;.txt</code> file.</li>
+</ul>
+<h3 id="3-key-vault-selectioncreation">3. Key Vault Selection/Creation<a class="headerlink" href="#3-key-vault-selectioncreation" title="Permanent link">&para;</a></h3>
+<p><strong>Select or Create Key Vault</strong>: The script will search for exisitng Key Vaults and give you the option whether to choose an existing Key Vault, or create a new one (reccomended for new installations).</p>
+<p><strong>Resource Group Selection</strong>: Select an existing Resource Group or create a new one.</p>
+<p><strong>Permissions</strong>: Ensure you have access rights to the Key Vault if upgrading.</p>
+<p><strong>Resources Created</strong>:</p>
+<ul>
+<li><strong>Key Vault</strong>: <code>GPT-X-KV-&lt;InstallationId&gt;</code></li>
+</ul>
+<p><strong>Key Vault Secrets Created</strong>:</p>
+<ul>
+<li><code>ToFInstallationId</code></li>
+<li><code>ToFInstallationGuid</code></li>
+<li><code>ToFSubscriptionId</code></li>
+<li><code>ToFResourceGroup</code></li>
+</ul>
+<p><em>Note: The Installation ID is a 12-digit random number used for resource naming.</em></p>
+<h3 id="4-storage-account-selectioncreation">4. Storage Account Selection/Creation<a class="headerlink" href="#4-storage-account-selectioncreation" title="Permanent link">&para;</a></h3>
+<p><strong>Storage Account Options</strong>: Select an existing Storage Account or create a new one.</p>
+<p><strong>Naming</strong>: New Storage Accounts will be named <code>gptxstore&lt;InstallationId&gt;</code>.</p>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>StorageAccountConnection</code></li>
+</ul>
+<p><em>Note: Function Apps cannot reference Storage Accounts in other Azure subscriptions.</em></p>
+<h3 id="5-cosmos-db-selectioncreation">5. Cosmos DB Selection/Creation<a class="headerlink" href="#5-cosmos-db-selectioncreation" title="Permanent link">&para;</a></h3>
+<p><strong>Cosmos DB Options</strong>: Select an existing Cosmos DB Account or create a new one.</p>
+<p><strong>Naming</strong>: New Cosmos DB Accounts will be named <code>gptorchestrator-&lt;InstallationId&gt;</code>.</p>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>CosmosDBAccountName</code></li>
+<li><code>CosmosDBKey</code></li>
+</ul>
+<h3 id="6-form-recognition-cognitive-service">6. Form Recognition Cognitive Service<a class="headerlink" href="#6-form-recognition-cognitive-service" title="Permanent link">&para;</a></h3>
+<p><strong>Service Options</strong>: Select an existing Form Recognition service or create a new one.</p>
+<p><strong>Naming</strong>: New services will be named <code>OCR4Images-&lt;InstallationId&gt;</code>.</p>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>OCR4ImagesName</code></li>
+<li><code>OCR4ImagesKey</code></li>
+<li><code>OCR4ImagesURL</code></li>
+</ul>
+<h3 id="7-speech-service-selectioncreation">7. Speech Service Selection/Creation<a class="headerlink" href="#7-speech-service-selectioncreation" title="Permanent link">&para;</a></h3>
+<p><strong>Service Options</strong>: Select an existing Speech Service or create a new one.</p>
+<p><strong>Naming</strong>: New services will be named <code>GPT-X-Speech-&lt;InstallationId&gt;</code>.</p>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>GPT-X-SpeechName</code></li>
+<li><code>GPT-X-SpeechKey</code></li>
+<li><code>GPT-X-SpeechURL</code></li>
+</ul>
+<h3 id="8-openai-service-pool-creation">8. OpenAI Service Pool Creation<a class="headerlink" href="#8-openai-service-pool-creation" title="Permanent link">&para;</a></h3>
+<p><strong>Define Pool Size</strong>: Enter the number of OpenAI services to create (up to 20).</p>
+<p><strong>Select Model</strong>: Choose the OpenAI model to deploy across the services. Reccomended: GPT-4o.</p>
+<p><strong>Service Creation</strong>: The script will create or reuse services, potentially across multiple subscriptions/locations based on quota availability.</p>
+<p><strong>Naming</strong>: Services will be named <code>GPT-X-OpenAI-&lt;InstallationId&gt;</code>, <code>GPT-X-OpenAI4Search-&lt;InstallationId&gt;</code></p>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>OpenAIKey</code></li>
+<li><code>OpenAIName</code></li>
+<li><code>OpenAIURL</code></li>
+<li><code>OpenAIModelName</code></li>
+<li><code>OpenAIModelDeploymentURL</code></li>
+</ul>
+<h3 id="9-application-and-function-deployment">9. Application and Function Deployment<a class="headerlink" href="#9-application-and-function-deployment" title="Permanent link">&para;</a></h3>
+<h4 id="publishgptplans-utility">PublishGPTPlans Utility<a class="headerlink" href="#publishgptplans-utility" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Deployment Location</strong>:<ul>
+<li><code>Program Files (x86)\GPT-X\PublishGPTPlans-&lt;InstallationId&gt;</code></li>
+</ul>
+</li>
+<li><strong>Data Deployment</strong>:<ul>
+<li>Select a root folder when prompted to deploy utility data.</li>
+</ul>
+</li>
+</ul>
+<h4 id="gptorchestratorsvc-function-app">GPTOrchestratorSvc Function App<a class="headerlink" href="#gptorchestratorsvc-function-app" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Deployment</strong>:<ul>
+<li>The script deploys the <code>GPTOrchestratorSvc-&lt;InstallationId&gt;</code> Function App.</li>
+</ul>
+</li>
+<li><strong>Resources Created</strong>:<ul>
+<li>Function App</li>
+<li>App Service Plan</li>
+<li>Application Insights</li>
+</ul>
+</li>
+</ul>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>GPTOrchestratorSvcAccessKey</code></li>
+</ul>
+<h4 id="chatgpt-x-app-service">ChatGPT-X App Service<a class="headerlink" href="#chatgpt-x-app-service" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Deployment</strong>:<ul>
+<li>Deploys <code>ChatGPT-X-&lt;InstallationId&gt;</code> Web App with Azure AD registration.</li>
+</ul>
+</li>
+<li><strong>Resources Created</strong>:<ul>
+<li>Web App</li>
+<li>App Service Plan</li>
+<li>Application Insights</li>
+<li>Azure AD Application</li>
+</ul>
+</li>
+</ul>
+<p><strong>Key Vault Secrets Created/Updated</strong>:</p>
+<ul>
+<li><code>ChatGPT-X-ClientId</code></li>
+<li><code>ChatGPT-X-ClientSecret</code></li>
+</ul>
+<h3 id="10-microsoft-teams-app-deployment">10. Microsoft Teams App Deployment<a class="headerlink" href="#10-microsoft-teams-app-deployment" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Connect to Microsoft Teams</strong>:<ul>
+<li>The script will attempt to connect using your current Azure account.</li>
+<li>If unsuccessful, you will be prompted to log in with another account.</li>
+</ul>
+</li>
+<li><strong>Approve Permissions</strong>:<ul>
+<li>Grant the necessary permissions for <code>ChatGPT-X-&lt;InstallationId&gt;</code> application.</li>
+<li><strong>Admin Consent</strong>: It's recommended to provide admin consent on behalf of your organization.</li>
+</ul>
+</li>
+<li><strong>Application Naming</strong>:<ul>
+<li>You will be prompted to enter or modify the Teams application name.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="post-installation-steps">Post-Installation Steps<a class="headerlink" href="#post-installation-steps" title="Permanent link">&para;</a></h2>
+<h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Azure Portal Check</strong>:<ul>
+<li>Log into the Azure Portal and verify that all resources have been created successfully.</li>
+</ul>
+</li>
+<li><strong>Service Status</strong>:<ul>
+<li>Ensure that all services are running and not in a failed state.</li>
+</ul>
+</li>
+<li><strong>Key Vault Secrets</strong>:<ul>
+<li>Verify that all necessary secrets have been populated in the Key Vault.</li>
+</ul>
+</li>
+</ol>
+<h3 id="initial-configuration">Initial Configuration<a class="headerlink" href="#initial-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>User Setup</strong>:<ul>
+<li>Add necessary users and assign appropriate roles within the application.</li>
+</ul>
+</li>
+<li><strong>Azure AD Integration</strong>:<ul>
+<li>Confirm that the Azure AD application is properly configured for authentication.</li>
+</ul>
+</li>
+<li><strong>Application Settings</strong>:<ul>
+<li>Review and adjust application settings as needed in the Azure Portal.</li>
+</ul>
+</li>
+</ol>
+<h3 id="testing-the-installation">Testing the Installation<a class="headerlink" href="#testing-the-installation" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Functionality Test</strong>:<ul>
+<li>Use provided sample scripts or interfaces to test the functionality of the GPT-X Platform.</li>
+</ul>
+</li>
+<li><strong>Service Connectivity</strong>:<ul>
+<li>Test connections to OpenAI services, Cosmos DB, and other integrated services.</li>
+</ul>
+</li>
+</ol>
+<h3 id="best-practices-for-production-environments">Best Practices for Production Environments<a class="headerlink" href="#best-practices-for-production-environments" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Scaling</strong>: Adjust resource capacities to match production workloads.</li>
+<li><strong>High Availability</strong>: Implement multi-region deployments if necessary.</li>
+<li><strong>Monitoring</strong>: Set up alerts and monitoring dashboards using Application Insights.</li>
+</ul>
+<hr />
+<h2 id="terraform-installation-method">Terraform Installation Method<a class="headerlink" href="#terraform-installation-method" title="Permanent link">&para;</a></h2>
+<p>You can use <strong>Terraform</strong> to install GPT-X, but we recommend starting with the supported installation method in a development/test sandbox environment. This will help you understand the necessary Azure resources and configurations before deploying them with Terraform.</p>
+<h3 id="recommended-workflow">Recommended Workflow<a class="headerlink" href="#recommended-workflow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Sandbox Installation</strong>:<br />
+   Begin by performing the standard installation in a development or test sandbox environment using our <strong>PowerShell and Azure CLI</strong> method. This process automatically sets up and configures all necessary Azure resources.</p>
+</li>
+<li>
+<p><strong>Testing and Validation</strong>:<br />
+   After the sandbox installation is complete, test the system to ensure that all components and applications are functioning as expected. This step also helps you observe the resource configurations that have been applied.</p>
+</li>
+<li>
+<p><strong>Terraform Configuration</strong>:<br />
+   Once the sandbox environment is working, you can replicate the setup using Terraform for other environments like QA or Production. Inspect the resources created in the sandbox and use those configurations as a basis for writing your Terraform scripts.</p>
+<p><em>Example Terraform Resource Block</em>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_resource_group&quot;</span><span class="w"> </span><span class="nv">&quot;gptx&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;GPTX-ResourceGroup&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;East US&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_storage_account&quot;</span><span class="w"> </span><span class="nv">&quot;gptx_store&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="na">name</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gptxstore123456&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.gptx.name</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="na">location</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.gptx.location</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="na">account_tier</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="na">account_replication_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;LRS&quot;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Resource Management</strong>:
+    During installation, you can choose to select existing Azure resources if applicable. This provides flexibility in managing and deploying resources across multiple environments.</p>
+</li>
+</ol>
+<p>By following this method, you can ensure that all required resources are correctly configured and tested before deploying GPT-X using Terraform in critical environments.</p>
+<hr />
+<h2 id="maintenance-and-monitoring">Maintenance and Monitoring<a class="headerlink" href="#maintenance-and-monitoring" title="Permanent link">&para;</a></h2>
+<h3 id="system-monitoring">System Monitoring<a class="headerlink" href="#system-monitoring" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Application Insights</strong>:<ul>
+<li>Utilize Application Insights for performance monitoring and diagnostics.</li>
+</ul>
+</li>
+<li><strong>Azure Monitor</strong>:<ul>
+<li>Set up Azure Monitor to track resource utilization and health.</li>
+</ul>
+</li>
+</ul>
+<h3 id="resource-scaling">Resource Scaling<a class="headerlink" href="#resource-scaling" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Manual Scaling</strong>:<ul>
+<li>Adjust resource tiers for services like Cosmos DB and App Service Plans through the Azure Portal.</li>
+</ul>
+</li>
+<li><strong>Auto-Scaling</strong>:<ul>
+<li>Configure auto-scaling rules where applicable to handle variable workloads.</li>
+</ul>
+</li>
+</ul>
+<h3 id="updating-and-patching">Updating and Patching<a class="headerlink" href="#updating-and-patching" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Application Updates</strong>:<ul>
+<li>Follow provided instructions for updating the GPT-X application when new versions are released.</li>
+</ul>
+</li>
+<li><strong>Azure Updates</strong>:<ul>
+<li>Keep Azure services up to date by applying patches and updates as recommended by Microsoft.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="uninstallation-and-rollback-procedures">Uninstallation and Rollback Procedures<a class="headerlink" href="#uninstallation-and-rollback-procedures" title="Permanent link">&para;</a></h2>
+<h3 id="uninstallation-process">Uninstallation Process<a class="headerlink" href="#uninstallation-process" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Run Uninstall Script</strong>:<ul>
+<li>Use the provided uninstallation script to remove GPT-X resources.</li>
+</ul>
+</li>
+<li><strong>Manual Cleanup</strong>:<ul>
+<li>Verify that all resources have been deleted from the Azure Portal.</li>
+<li>Remove any residual files from the local machine.</li>
+</ul>
+</li>
+</ol>
+<h3 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Backup Restoration</strong>:<ul>
+<li>Restore configurations and data from backups taken prior to installation.</li>
+</ul>
+</li>
+<li><strong>Version Rollback</strong>:<ul>
+<li>If downgrading, follow the installation steps for the previous version using the backup Installation ID and Key Vault.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors-and-fixes">Common Errors and Fixes<a class="headerlink" href="#common-errors-and-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Script Execution Disabled</strong>:</p>
+<ul>
+<li><strong>Error</strong>: <code>iHealthSetup.ps1 cannot be loaded because running scripts is disabled on this system.</code></li>
+<li><strong>Solution</strong>: Adjust PowerShell execution policies as described in the Pre-Installation Setup.</li>
+</ul>
+</li>
+<li>
+<p><strong>Insufficient Permissions</strong>:</p>
+<ul>
+<li><strong>Solution</strong>: Ensure that you have the required Azure and local administrative permissions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Quota Limits Reached</strong>:</p>
+<ul>
+<li><strong>Solution</strong>: Check Azure subscription quotas and request increases if necessary.</li>
+</ul>
+</li>
+</ul>
+<h3 id="log-file-location">Log File Location<a class="headerlink" href="#log-file-location" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Installation Logs</strong>:<ul>
+<li>Located in <code>%LOCALAPPDATA%\GPT-X-Logs\</code></li>
+</ul>
+</li>
+<li><strong>Azure Activity Logs</strong>:<ul>
+<li>Accessible via the Azure Portal under Monitor &gt; Activity Log.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="support-information">Support Information<a class="headerlink" href="#support-information" title="Permanent link">&para;</a></h2>
+<h3 id="contact-support">Contact Support<a class="headerlink" href="#contact-support" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Email</strong>: ...</li>
+<li><strong>Phone</strong>: ...</li>
+<li><strong>Support Portal</strong>: ...</li>
+</ul>
+<hr />
+<h2 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h2>
+<h3 id="a-glossary-of-terms">A. Glossary of Terms<a class="headerlink" href="#a-glossary-of-terms" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Azure AD (Azure Active Directory)</strong>: Microsoft’s cloud-based identity and access management service.</li>
+<li><strong>Key Vault</strong>: Azure service for storing and accessing secrets securely.</li>
+<li><strong>Function App</strong>: Azure service for running small pieces of code (functions) without worrying about application infrastructure.</li>
+<li><strong>App Service Plan</strong>: Defines the compute resources for your web app.</li>
+</ul>
+<h3 id="b-resource-naming-conventions">B. Resource Naming Conventions<a class="headerlink" href="#b-resource-naming-conventions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Key Vault</strong>: <code>GPT-X-KV-&lt;InstallationId&gt;</code></li>
+<li><strong>Storage Account</strong>: <code>gptxstore&lt;InstallationId&gt;</code></li>
+<li><strong>Cosmos DB Account</strong>: <code>gptorchestrator-&lt;InstallationId&gt;</code></li>
+<li><strong>OpenAI Services</strong>: <code>GPT-X-OpenAI-&lt;InstallationId&gt;</code>, <code>GPT-X-OpenAI2-&lt;InstallationId&gt;</code>, etc.</li>
+<li><strong>Function App</strong>: <code>GPTOrchestratorSvc-&lt;InstallationId&gt;</code></li>
+<li><strong>Web App</strong>: <code>ChatGPT-X-&lt;InstallationId&gt;</code></li>
+</ul>
+<p><em>Note: <code>&lt;InstallationId&gt;</code> is a unique 12-digit number generated during installation.</em></p>
+<h3 id="c-version-history">C. Version History<a class="headerlink" href="#c-version-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0</td>
+<td>10/3/2024</td>
+<td>Initial release of the installation guide. Need to confirm details and import images.</td>
+</tr>
+<tr>
+<td>0.1</td>
+<td>10/8/2024</td>
+<td>Format changes and addition of Azure Resource Provider Registration pre-requisite.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.tabs", "toc.integrate", "header.autolink", "navigation.tracking", "navigation.sections"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

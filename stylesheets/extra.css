@@ -1,0 +1,11 @@
+:root {
+    --md-primary-fg-color: #00153D;
+    --md-accent-fg-color: #3f9c35;
+  }
+
+.pdf-button {
+  border: 1px solid #3f9c35; 
+  color: #3f9c35; 
+  cursor: pointer; 
+  padding: 0.5rem
+}
