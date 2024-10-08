@@ -1,37 +1,7 @@
 # GPT-X Platform Installation Guide
 
 **Version: 1.0**  
-_Last Updated: 10/3/2024_
-
----
-
-## Table of Contents
-
-1. [Introduction](#1-introduction)
-2. [System Requirements](#2-system-requirements)
-3. [Pre-Installation Checklist](#3-pre-installation-checklist)
-4. [Security Considerations](#4-security-considerations)
-5. [Installation Steps](#5-installation-steps)
-    - [5.1 Checking/Installing Prerequisites](#51-checkinginstalling-prerequisites)
-    - [5.2 Run the Installer](#52-run-the-installer)
-    - [5.3 Key Vault Selection/Creation](#53-key-vault-selectioncreation)
-    - [5.4 Storage Account Selection/Creation](#54-storage-account-selectioncreation)
-    - [5.5 Cosmos DB Selection/Creation](#55-cosmos-db-selectioncreation)
-    - [5.6 Form Recognition Cognitive Service](#56-form-recognition-cognitive-service)
-    - [5.7 Speech Service Selection/Creation](#57-speech-service-selectioncreation)
-    - [5.8 OpenAI Service Pool Creation](#58-openai-service-pool-creation)
-    - [5.9 Application and Function Deployment](#59-application-and-function-deployment)
-    - [5.10 Microsoft Teams App Deployment](#510-microsoft-teams-app-deployment)
-6. [Post-Installation Steps](#6-post-installation-steps)
-7. [Maintenance and Monitoring](#7-maintenance-and-monitoring)
-8. [Terraform Installation Method](#8-terraform-installation-method)
-9. [Uninstallation and Rollback Procedures](#9-uninstallation-and-rollback-procedures)
-10. [Troubleshooting](#10-troubleshooting)
-11. [Support Information](#11-support-information)
-12. [Appendix](#12-appendix)
-    - [A. Glossary of Terms](#a-glossary-of-terms)
-    - [B. Resource Naming Conventions](#b-resource-naming-conventions)
-    - [C. Version History](#c-version-history)
+_Last Updated: 10/8/2024_
 
 ---
 
@@ -54,16 +24,6 @@ GPT-X Platform leverages advanced AI capabilities to deliver transformative solu
 
 ## 2. System Requirements
 
-### Hardware Requirements
-
-- **Processor**: Quad-core CPU or higher
-- **Memory**: Minimum 16 GB RAM
-- **Storage**: At least 100 GB of free disk space
-- **Display**: 1024x768 resolution or higher
-
-### Operating System Requirements
-
-- **Supported OS**: Windows 10 Pro/Enterprise (64-bit), Windows Server 2016/2019/2022
 - **PowerShell**: Version 5.1 or higher
 - **Azure CLI**: Version 2.30.0 or higher
 
@@ -71,8 +31,9 @@ GPT-X Platform leverages advanced AI capabilities to deliver transformative solu
 
 ## 3. Pre-Installation Checklist
 
-- [ ] **Licensing Information**: Confirm that you have the necessary licenses and installation keys.
-- [ ] **Azure Subscription Access**: Verify that you have Owner or Contributor access to the target Azure subscription.
+- [ ] **Azure Subscription Access**: Verify that you have one of the following role sets in the target Azure subscription:
+    - Contributor **and** User Access Administrator roles
+    - Owner role
 - [ ] **Azure Quotas**: Ensure sufficient quotas for services like Compute, Storage, Cosmos DB, and OpenAI.
 - [ ] **Permissions**: Confirm that you have the required Azure AD roles (Application Administrator) and local administrative rights.
 - [ ] **Dependencies Installed**:

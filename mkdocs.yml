@@ -23,6 +23,7 @@ markdown_extensions:
   - md_in_html
   - pymdownx.tasklist:
       custom_checkbox: true
+      clickable_checkbox: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

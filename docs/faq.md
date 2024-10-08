@@ -3,12 +3,12 @@
 ## General Questions
 
 ### 1. What is GPT-X?
-GPT-X is a Platform-as-a-Service (PaaS) that automates workflows and enhances business operations through AI-driven processes. It integrates with enterprise systems, allowing organizations to design custom workflows that streamline processes and improve efficiency.
+GPT-X is a Platform-as-a-Service (PaaS) that automates workflows and enhances business operations using AI-driven processes powered by the Azure OpenAI Service. It leverages Large Language Models (LLMs) built by [OpenAI](https://openai.com/) to execute intelligent workflows that integrate seamlessly with enterprise systems. This allows organizations to design custom workflows that streamline processes, extract insights from data, and significantly improve operational efficiency.
 
 ### 2. What are the key benefits of using GPT-X?
 - Flexible and customizable workflows
-- Native integration with Microsoft Azure
-- Seamless integration with Microsoft Teams for real-time collaboration
+- Microsoft Azure native
+- Seamless integration with Microsoft Teams
 - End-to-end automation across various enterprise systems
 - Scalable architecture to grow with your business
 
@@ -62,8 +62,15 @@ By following this approach, you ensure that all required resources are identifie
 
 ## Security and Compliance
 
-### 12. How secure is GPT-X?
-GPT-X is Azure-native, ensuring that all workflows and integrations benefit from Azure's security infrastructure, including data encryption, secure APIs, and VPN connections.
+### 12. Does GPT-X have built-in mechanisms to ensure secure and resilient AI system design, development, and operation?
+The GPT-X platform leverages the Azure OpenAI Service and a robust suite of Azure resources to ensure a resilient and secure design. Every component within GPT-X, including the OpenAI Service, Cosmos DB, Function App, App Service, and Azure Storage, is built with enterprise-grade features like redundancy, load balancing, dynamic capacity scaling, fault tolerance, and disaster recovery capabilities.
+
+Key elements of the GPT-X infrastructure include:
+
+- **Dynamic Workfload Optimization and Throttling**: GPT-X is engineered to handle fluctuations in workload efficiently. If the platform becomes overloaded or specific Azure resources experience issues, GPT-X automatically optimizes or throttles workloads to maintain performance. In these scenarios, the system is designed to gracefully degrade functionality, ensuring minimal impact on business operations.
+- **Load Balancing and High Availability**: GPT-X’s core components are built for maximum reliability. OpenAI Services and Function Apps are dynamically load-balanced to distribute demand evenly across multiple instances. Cosmos DB is designed for high availability with guaranteed performance and multi-region replication to prevent data loss.
+
+This architecture enables GPT-X to maintain functionality during unexpected events, providing a stable and secure AI-driven environment that minimizes disruptions and ensures continuous operation even in challenging conditions.
 
 ### 13. Does GPT-X comply with industry regulations?
 Yes, GPT-X can be configured to comply with industry standards and regulations, including HIPAA, GDPR, and others, depending on your business requirements and workflow design.
